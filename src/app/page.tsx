@@ -111,6 +111,7 @@ export default function Home() {
 
   return (
     <div>
+      <div id="top" />
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
@@ -154,7 +155,7 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section>
+      <section id="experience">
         <h2 className="section-title">Experience</h2>
         <div className="timeline-container">
           <div
@@ -195,19 +196,24 @@ export default function Home() {
       </section>
 
       {/* Education Section */}
-      <section>
+      <section id="education">
         <h2 className="section-title">Education</h2>
         <div className="card-list">
           <div className="card">
-            <div className="card-title">Georgia Institute of Technology</div>
-            <div className="card-meta">Bachelors of Science in Computer Science + Math Minor • GPA: 4.00</div>
-            <div className="card-meta">Expected Graduation: May 2027</div>
-            <div>
-              <div className="card-title" style={{ fontSize: '1rem', marginBottom: 0 }}>Concentration:</div>
-              <div>Mathematics and Artificial Intelligence</div>
-              <div className="card-title" style={{ fontSize: '1rem', margin: '1rem 0 0.2rem 0' }}>Relevant Coursework:</div>
-              <div>Data Structures & Algorithms, Intro to Artificial Intelligence, Discrete Math, Linear Algebra, Multivariable Calculus, Introductory Physics 1 & 2, Computer Organization and Programming, Objects and Design</div>
+            <div className="timeline-card-header">
+              <div className="timeline-header-left">
+                <div className="timeline-company">Georgia Institute of Technology</div>
+                <div className="timeline-title edu">Bachelors of Science in Computer Science + Math Minor</div>
+              </div>
+              <div className="timeline-header-right">
+                <div className="timeline-dates-right">Expected Graduation: May 2027</div>
+                <div className="timeline-gpa">GPA: 4.00</div>
+              </div>
             </div>
+            <ul>
+              <li><b>Concentration:</b> Mathematics and Artificial Intelligence</li>
+              <li><b>Relevant Coursework:</b> Data Structures & Algorithms, Intro to Artificial Intelligence, Discrete Math, Linear Algebra, Multivariable Calculus, Introductory Physics 1 & 2, Computer Organization and Programming, Objects and Design</li>
+            </ul>
           </div>
         </div>
       </section>

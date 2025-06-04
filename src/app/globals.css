@@ -311,22 +311,53 @@ nav {
   padding-left: 2rem;
   padding-right: 2rem;
 }
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.1em;
+}
+.timeline-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.timeline-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.timeline-dates-right {
+  color: #fff;
+  font-size: 1.02rem;
+  text-align: right;
+  margin-bottom: 0;
+}
+.timeline-gpa {
+  color: #fff;
+  font-size: 1.02rem;
+  text-align: right;
+  margin-bottom: 0;
+}
 .timeline-company {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--cobalt-blue);
-  margin-bottom: 0.2em;
+  margin-bottom: 0.1em;
 }
 .timeline-dates {
   font-size: 1.05rem;
-  color: #bbb;
-  margin-bottom: 0.7em;
+  color: #fff;
+  margin-bottom: 0.2em;
 }
 .timeline-title {
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 0.7em;
   color: #fff;
+}
+.timeline-title.edu {
+  margin-bottom: 0;
 }
 
 .card-anim {
@@ -365,4 +396,8 @@ nav {
   .timeline-nodes-row::-webkit-scrollbar {
     display: none;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }

@@ -8,7 +8,9 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '/' },
+    { name: 'Home', href: '/#top' },
+    { name: 'Experience', href: '/#experience' },
+    { name: 'Education', href: '/#education' },
     { name: 'Projects', href: '/projects' },
   ];
 
@@ -21,6 +23,7 @@ const Navbar = () => {
               key={item.name}
               href={item.href}
               className="nav-link"
+              scroll={item.href.startsWith('/#')}
               onClick={() => setIsOpen(false)}
             >
               {item.name}
