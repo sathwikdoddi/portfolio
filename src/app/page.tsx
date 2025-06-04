@@ -1,103 +1,216 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+
+const experiences = [
+  {
+    title: 'Software Development Intern (Embedded Systems)',
+    company: 'Amazon Web Services (AWS)',
+    date: 'May 2025 - August 2025',
+    logo: '/aws-logo.jpg',
+    details: [
+      'Refactor firmware in C to support config-driven polling with platform-specific optimizations, reducing polling load by 80%',
+      'Engineer thread-safe callback systems to trigger event-specific handlers in order to cut down response times',
+      'Expose platform-specific event states via UDP network protocol, improving server debugging efficiency',
+      'Write 300+ integration tests to validate end-to-end event detection, callback execution, and API accuracy',
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'RoboJackets RoboRacing @ Georgia Tech',
+    date: 'September 2024 - Present',
+    logo: '/robojackets-logo.jpg',
+    details: [
+      'Architect modular C++ software and ROS2 components, within a Docker container, accelerating prototyping by 25%',
+      'Implement graph-searching algorithms with sensor data, speeding up navigation and solution discovery by over 50%',
+      'Refine tuning, enhancing path-planning deviation from 1 meters to 0.12 meters, representing an 8x improvement',
+      'Optimize CI/CD pipelines via Docker, cutting deployment time for 200+ members by 30%',
+    ],
+  },
+  {
+    title: 'Computational Neuroscience Research Intern',
+    company: 'Nabil Imam Group',
+    date: 'August 2024 - Present',
+    logo: '/imam-logo.png',
+    details: [
+      "Reproduce DeepCubeA's framework using deep RL and A* search in Python to achieve a 100% solve rate",
+      'Integrate and optimize biologically-inspired constraints to simulate human cognitive limits in planning and memory',
+      'Compare and visualize neural and symbolic agents across metrics like solution length, time, and sample efficiency',
+    ],
+  },
+  {
+    title: 'Full-Stack Software Engineer',
+    company: 'SaleSpike Solutions',
+    date: 'May 2024 – August 2024',
+    logo: '/salespike-logo.png',
+    details: [
+      'Secure 200+ weekly leads to 10+ clients by creating customized web solutions aligned with business needs.',
+      'Collaborate with clients to design user-friendly front-ends, contributing to a 20% revenue increase.',
+      'Produce 40+ webpages with Agile methodologies, Jira, React, Express, and MongoDB, achieving 95% customer satisfaction.',
+      'Integrate secure payment processing using Stripe, generating an additional 10% in client revenue.',
+    ],
+  },
+  {
+    title: 'Software Development Captain & Robot Manager',
+    company: 'FIRST Robotics Team 4013',
+    date: 'August 2022 – May 2024',
+    logo: '/first-logo.jpg',
+    details: [
+      'Deploy a scouting software solution with React and an AWS SQL server, boosting data filtering speeds by 80%, leading to a reduction in analysis time from 3.6 to 0.72 milliseconds per competition.',
+      'Engineer an OpenCV-powered auto-aim system with 92% precision, increasing match scores by 30%.',
+      'Author custom localization software, allowing for autonomous driving features and improving robot speed by 30%.',
+      'Direct 50+ members and 8 sub-teams to multiple top 10 regional and state-level placements.',
+    ],
+  },
+];
+
+const reversedExperiences = [...experiences].reverse();
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Responsive: detect if mobile
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 700);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+  // Default select Amazon (rightmost)
+  const defaultSelected = reversedExperiences.findIndex(exp => exp.company === 'Amazon Web Services (AWS)');
+  const [selected, setSelected] = useState(defaultSelected === -1 ? 0 : defaultSelected);
+  const [cardKey, setCardKey] = useState(0);
+
+  const handleSelect = (idx: number) => {
+    setSelected(idx);
+    setCardKey(idx + Math.random()); // force re-mount for animation
+  };
+
+  // Dynamic blue spot for the timeline bar
+  const nodeCount = reversedExperiences.length;
+  const nodeSize = 80; // px (5rem + some margin)
+  const nodeGap = isMobile ? 32 : 40; // px
+  const minRowWidth = nodeCount > 1 ? nodeCount * nodeSize + (nodeCount - 1) * nodeGap : nodeSize;
+
+  // Use a brighter blue for the spot
+  const brightBlue = '#1976ff';
+  // Calculate blue spot position in px, then as a percent of the bar width
+  const spotPx = nodeCount === 1
+    ? nodeSize / 2
+    : (selected * (nodeSize + nodeGap)) + nodeSize / 2;
+  const spotPercent = (spotPx / minRowWidth) * 100;
+  const barBg = `linear-gradient(to right, 
+    #222 0%, 
+    #222 ${Math.max(spotPercent - 10, 0)}%, 
+    ${brightBlue} ${Math.max(spotPercent - 2, 0)}%, 
+    ${brightBlue} ${Math.min(spotPercent + 2, 100)}%, 
+    #222 ${Math.min(spotPercent + 10, 100)}%, 
+    #222 100%)`;
+
+  return (
+    <div>
+      {/* Hero Section */}
+      <section className="hero">
+        <h1 className="hero-title">
+          Hi, I'm <span className="cobalt">Sathwik Doddi</span>
+        </h1>
+        <p className="hero-desc">
+          Computer Science Student @ Georgia Tech | Software Engineer | AI Enthusiast
+        </p>
+        <div className="social-links">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/sathwikdoddi"
             target="_blank"
             rel="noopener noreferrer"
+            className="social-link"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            <FaGithub />
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://linkedin.com/in/sathwik-doddi"
             target="_blank"
             rel="noopener noreferrer"
+            className="social-link"
           >
-            Read our docs
+            <FaLinkedin />
+          </a>
+          <a
+            href="mailto:sathwik@gatech.edu"
+            className="social-link"
+          >
+            <FaEnvelope />
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          className="resume-btn"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          View Resume
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Experience Section */}
+      <section>
+        <h2 className="section-title">Experience</h2>
+        <div className="timeline-container">
+          <div
+            className="timeline-nodes-row"
+            style={isMobile ? { minWidth: `${minRowWidth}px`, width: `${minRowWidth}px` } : { width: '100%' }}
+          >
+            <div className="timeline-horizontal" style={{ background: barBg }} />
+            {reversedExperiences.map((exp, idx) => (
+              <div key={exp.company} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div className="timeline-date-above">{exp.date}</div>
+                <button
+                  className={`timeline-node${selected === idx ? ' active' : ''}`}
+                  onClick={() => handleSelect(idx)}
+                  aria-label={exp.company}
+                >
+                  <div className="timeline-logo">
+                    <Image src={exp.logo} alt={exp.company + ' logo'} width={64} height={64} />
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+          <div className="timeline-card-area">
+            <div
+              key={cardKey}
+              className="card card-anim timeline-card"
+            >
+              <div className="timeline-company">{reversedExperiences[selected].company}</div>
+              <div className="timeline-title">{reversedExperiences[selected].title}</div>
+              <ul>
+                {reversedExperiences[selected].details.map((d, i) => (
+                  <li key={i}>{d}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section>
+        <h2 className="section-title">Education</h2>
+        <div className="card-list">
+          <div className="card">
+            <div className="card-title">Georgia Institute of Technology</div>
+            <div className="card-meta">Bachelors of Science in Computer Science + Math Minor • GPA: 4.00</div>
+            <div className="card-meta">Expected Graduation: May 2027</div>
+            <div>
+              <div className="card-title" style={{ fontSize: '1rem', marginBottom: 0 }}>Concentration:</div>
+              <div>Mathematics and Artificial Intelligence</div>
+              <div className="card-title" style={{ fontSize: '1rem', margin: '1rem 0 0.2rem 0' }}>Relevant Coursework:</div>
+              <div>Data Structures & Algorithms, Intro to Artificial Intelligence, Discrete Math, Linear Algebra, Multivariable Calculus, Introductory Physics 1 & 2, Computer Organization and Programming, Objects and Design</div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
