@@ -3,8 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal portfolio showcasing my work and experience",
+  title: "Sathwik Doddi",
+  description: "Software Engineer & Computer Science Student at Georgia Tech",
 };
 
 export default function RootLayout({
