@@ -35,7 +35,7 @@ const experiences = [
     date: 'August 2024 - Present',
     logo: '/imam-logo.png',
     details: [
-      "Reproduce DeepCubeA's framework using deep RL and A* search in Python to achieve a 100% solve rate",
+      "Reproduce DeepCubeA&apos;s framework using deep RL and A* search in Python to achieve a 100% solve rate",
       'Integrate and optimize biologically-inspired constraints to simulate human cognitive limits in planning and memory',
       'Compare and visualize neural and symbolic agents across metrics like solution length, time, and sample efficiency',
     ],
@@ -46,10 +46,10 @@ const experiences = [
     date: 'May 2024 – August 2024',
     logo: '/salespike-logo.png',
     details: [
-      'Secure 200+ weekly leads to 10+ clients by creating customized web solutions aligned with business needs.',
-      'Collaborate with clients to design user-friendly front-ends, contributing to a 20% revenue increase.',
-      'Produce 40+ webpages with Agile methodologies, Jira, React, Express, and MongoDB, achieving 95% customer satisfaction.',
-      'Integrate secure payment processing using Stripe, generating an additional 10% in client revenue.',
+      'Secure 200+ weekly leads to 10+ clients by creating customized web solutions aligned with business needs',
+      'Collaborate with clients to design user-friendly front-ends, contributing to a 20% revenue increase',
+      'Produce 40+ webpages with Agile methodologies, Jira, React, Express, and MongoDB, achieving 95% customer satisfaction',
+      'Integrate secure payment processing using Stripe, generating an additional 10% in client revenue',
     ],
   },
   {
@@ -58,10 +58,10 @@ const experiences = [
     date: 'August 2022 – May 2024',
     logo: '/first-logo.jpg',
     details: [
-      'Deploy a scouting software solution with React and an AWS SQL server, boosting data filtering speeds by 80%, leading to a reduction in analysis time from 3.6 to 0.72 milliseconds per competition.',
-      'Engineer an OpenCV-powered auto-aim system with 92% precision, increasing match scores by 30%.',
-      'Author custom localization software, allowing for autonomous driving features and improving robot speed by 30%.',
-      'Direct 50+ members and 8 sub-teams to multiple top 10 regional and state-level placements.',
+      'Deploy a scouting software solution with React and an AWS SQL server, boosting data filtering speeds by 80%, leading to a reduction in analysis time from 3.6 to 0.72 milliseconds per competition',
+      'Engineer an OpenCV-powered auto-aim system with 92% precision, increasing match scores by 30%',
+      'Author custom localization software, allowing for autonomous driving features and improving robot speed by 30%',
+      'Direct 50+ members and 8 sub-teams to multiple top 10 regional and state-level placements',
     ],
   },
 ];
@@ -115,7 +115,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
-          Hi, I'm <span className="cobalt">Sathwik Doddi</span>
+          Hi, I&apos;m <span className="cobalt">Sathwik Doddi</span>
         </h1>
         <div className="hero-subtitle">
           <p>
@@ -126,7 +126,7 @@ export default function Home() {
           </p>
         </div>
         <p className="hero-desc">
-          Strong background in C++, low-level programming, and mathematical optimization. Experienced in quantitative development, systems programming, and research-oriented software engineering. Skilled in algorithm design, performance optimization, and building robust, scalable systems. Combines deep backend expertise with modern full-stack development to create optimized, user-friendly applications that solve real-world problems.
+          Strong background in C++, low-level programming, and mathematical optimization. Experienced in quantitative development, systems programming, and research-oriented software engineering. Skilled in algorithm design, performance optimization, and building robust, scalable systems. Combines deep backend expertise with modern full-stack development to create optimized, user-friendly applications that solve real-world problems
         </p>
         <div className="social-links">
           <a
