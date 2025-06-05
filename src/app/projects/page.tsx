@@ -140,26 +140,26 @@ export default function Projects() {
             <span key={tag} className="additional-project-tag">{tag}</span>
           ))}
         </div>
-        <div className="additional-project-links">
+      </div>
+      <div className="additional-project-links">
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="additional-project-link"
+        >
+          <FaGithub /> Source
+        </a>
+        {project.demo && (
           <a
-            href={project.github}
+            href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="project-link"
+            className="additional-project-link"
           >
-            <FaGithub /> Source
+            <FaExternalLinkAlt /> Demo
           </a>
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              <FaExternalLinkAlt /> Demo
-            </a>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

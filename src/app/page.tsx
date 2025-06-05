@@ -117,8 +117,16 @@ export default function Home() {
         <h1 className="hero-title">
           Hi, I'm <span className="cobalt">Sathwik Doddi</span>
         </h1>
+        <div className="hero-subtitle">
+          <p>
+            Computer Science + Math @ Georgia Tech
+          </p>
+          <p>
+            Software Development Engineer Intern @ AWS
+          </p>
+        </div>
         <p className="hero-desc">
-          Computer Science Student @ Georgia Tech | Software Engineer | AI Enthusiast
+          Strong background in C++, low-level programming, and mathematical optimization. Experienced in quantitative development, systems programming, and research-oriented software engineering. Skilled in algorithm design, performance optimization, and building robust, scalable systems. Combines deep backend expertise with modern full-stack development to create optimized, user-friendly applications that solve real-world problems.
         </p>
         <div className="social-links">
           <a
